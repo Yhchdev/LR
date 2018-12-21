@@ -15,6 +15,8 @@ import pprint
 
 
 class Grammar():
+    '''文法的数据结构
+       形如“a->b|c”'''
     def __init__(self,  grammarText):
         """
         假设前端传来只有一个字符串，该字符串包含所有文法
@@ -31,6 +33,11 @@ class Grammar():
         print(self.g)
 
 if __name__=="__main__":
-    with open('tests/test1.txt',  'r') as f:
-        g=Grammar(f.read())
-        g.showGrammar()
+    g=Grammar("S-->E\n\
+               E-->aA|bB\n\
+               A-->cA|d\n\
+               B-->cB|d")
+    g.showGrammar()
+   #with open('tests/test1.txt',  'r') as f:
+       #g=Grammar(f.read())
+       #g.showGrammar()

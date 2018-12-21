@@ -1,3 +1,4 @@
+from dataStructure import Grammar
 """
 先搭建一个基本框架
 Author:Jipeng Zhang
@@ -18,7 +19,13 @@ dotLocation['S']={'E':1}
 dotLocation['E']={'aA':2, 'bB':2}
 """
 def grammarToItem(grammar):
-    pass
+    '''产生式变项目\n返回字典[leftS1:[rightS1:len,rightS2:len...], ...]'''
+    dotLocation = grammar.g.fromkeys(grammar.g.keys())
+    for eachGrammar in dotLocation.keys():
+        d = dict.fromkeys(grammar.g[eachGrammar])
+        for delem in d.keys():
+            d[delem] = len(delem) 
+    return dotLocation
     
 """
 3.构造项目集规范族：
@@ -93,3 +100,16 @@ def AnalyticalStatement(grammar,  set1,  goto):
 3.输入串栈所形成的记录，使用String保存
 均为了前端显示方便。
 """
+
+def LRAnalysis(grammar):
+    CanonicalCollection(grammar, grammarToItem(grammar))
+    pass
+
+
+if __name__=="__main__":
+    g=Grammar("S-->E\n\
+               E-->aA|bB\n\
+               A-->cA|d\n\
+               B-->cB|d\n")
+    g.showGrammar()
+    LRAnalysis(g)
