@@ -23,20 +23,30 @@ class Grammar():
         则：self.g中保存初步处理后的文法为dict()
         """
         self.g=dict()
+        self.terminal = set()
+        self.nonterminal = set()
         #需要去掉最后一个空行，所以[0:-1]
+        print(grammarText)
         grammars=list(grammarText.split("\n"))[0:-1]
-        for eachGrammar in grammars:
+        for eachGrammar in grammars:            
+            eachGrammar.strip()
+            print(eachGrammar)
             location=eachGrammar.find("-->")
             self.g[eachGrammar[0:location]]=list(eachGrammar[location+3:].split('|'))
+        self.terminal = set(self.g.keys())
+        for terminal in self.terminal:
+            for each in self.g[terminal]:
+                for word in each:
+                    if word not in self.terminal:
+                        self.nonterminal.add(word)
+        print(self.terminal)
+        print(self.nonterminal)
 
     def showGrammar(self):
         print(self.g)
 
 if __name__=="__main__":
-    g=Grammar("S-->E\n\
-               E-->aA|bB\n\
-               A-->cA|d\n\
-               B-->cB|d")
+    g=Grammar("S-->E\nE-->aA|bB\nA-->cA|d\nB-->cB|d\n")
     g.showGrammar()
    #with open('tests/test1.txt',  'r') as f:
        #g=Grammar(f.read())

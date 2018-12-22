@@ -43,6 +43,11 @@ def grammarToItem(grammar):
 4.项目中点的位置，为一个int
 """
 def Closure(grammar,  leftString,  rightSubscript,  dotLocation):
+    closure = list(grammar.g[leftString][rightSubscript])
+    old = list()
+    while old != closure:
+        old = closure
+        pass
     pass
     
 """
@@ -67,6 +72,8 @@ for set2 不为空：  这个就是判断是否构建完成的条件
 """
 
 def CanonicalCollection(grammar,  dotLocation):
+    goto = dict()
+    Closure(grammar,  'S',  0,  dotLocation)
     pass
     
 """
